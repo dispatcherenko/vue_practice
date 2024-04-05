@@ -1,11 +1,25 @@
 <template>
     <div class="home-card">
-      <h4 class="home-card__title">Закрытие ресторана</h4>
-      <p class="home-card__description">
-        Вчера прошел последний день приема в знаменитом ресторане. Причины закрытия ...
-      </p>
+      <h4 class="home-card__title">{{ title }}</h4> 
+      <p class="home-card__description">{{ description }}</p>
     </div>
 </template>
+
+<script>
+export default {
+  name: "HomeCard",
+  props: {
+    title: {
+      type: String,
+      default: ""
+    },
+    description: {
+      type: String,
+      default: ""
+    }
+  }
+}
+</script>
 
 <style lang="less">
 .home-card {

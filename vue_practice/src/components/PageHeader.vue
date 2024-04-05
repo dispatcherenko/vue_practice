@@ -7,9 +7,9 @@
         <div class="page-header__logo-circle"></div>
       </div>
       <nav class="page-header__nav">
-         <button type="button" class="page-header__nav-item">Главная</button>
-         <button type="button" class="page-header__nav-item">Правила</button>
-         <button type="button" class="page-header__nav-item">Контакты</button>
+        <button type="button" class="page-header__nav-item" @click="$emit('setActiveTab', 'home')">Главная</button>
+        <button type="button" class="page-header__nav-item" @click="$emit('setActiveTab', 'rules')">Правила</button>
+        <button type="button" class="page-header__nav-item" @click="$emit('setActiveTab', 'contacts')">Контакты</button>
       </nav>
     </div>
   </header>
@@ -18,7 +18,11 @@
 <script>
 import SvgLogo from "@/components/svg/SvgLogo";
 export default {
-    components: { SvgLogo }
+  name: "PageHeader",
+  components: {
+    SvgLogo
+  },
+  emits: ['setActiveTab']
 }
 </script>
 

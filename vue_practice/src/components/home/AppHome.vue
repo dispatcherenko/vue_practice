@@ -3,9 +3,13 @@
     <main class="home">
       <div class="home__container">
         <div class="home__list">
-          <HomeCard class="home__list-item" />
-          <HomeCard class="home__list-item" />
-          <HomeCard class="home__list-item" />
+          <HomeCard
+            class="home__list-item"
+            v-for="(item) in newsList"
+            :key="item.id"
+            :title="item.title"
+            :description="item.description"
+          />
         </div>
       </div>
     </main>
@@ -14,9 +18,16 @@
 
 <script>
 import HomeCard from "@/components/home/HomeCard.vue";
+import newsList from "@/json/news.json";
 export default {
+  name: "AppHome",
   components: {
     HomeCard
+  },
+  data() {
+    return {
+      newsList: newsList
+    };
   }
 }
 </script>

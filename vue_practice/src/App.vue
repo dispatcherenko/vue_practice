@@ -1,18 +1,26 @@
 <template>
-  <PageHeader/>
-  <AppHome/>
+  <PageHeader class="app__header" @setActiveTab="(value) => setActiveTab(value)"/>
+  <AppHome v-if="activeTab == 'home'" class="app__home" />
+  <AppRules v-if="activeTab == 'rules'" class="app__rules" />
+  <AppContacts v-if="activeTab == 'contacts'" class="app__contacts" />
 </template>
 
 <script>
 import PageHeader from "@/components/PageHeader";
 import AppHome from "@/components/home/AppHome.vue";
+import AppRules from "@/components/AppRules.vue";
+import AppContacts from "@/components/AppContacts.vue";
 export default {
  name: 'App',
  components: {
   PageHeader,
-  AppHome
+  AppHome,
+  AppRules,
+  AppContacts
  }
 }
+
+
 </script>
 
 <style lang="less"> 
