@@ -11,7 +11,7 @@
     </div>
 </template>
 
-<style>
+<style lang="less">
 .rules {
   &__container {
     .container();

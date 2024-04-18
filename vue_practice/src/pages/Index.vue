@@ -1,5 +1,5 @@
 <template>
-    <body>
+  <body>
     <main class="home">
       <div class="home__container">
         <div class="home__list">
@@ -9,6 +9,7 @@
             :key="item.id"
             :title="item.title"
             :description="item.description"
+            :id="item.id"
           />
         </div>
       </div>
@@ -17,17 +18,20 @@
 </template>
 
 <script>
-import HomeCard from "@/components/home/HomeCard.vue";
-import newsList from "@/json/news.json";
+import HomeCard from "@/components/home/HomeCard";
+import { useMainStore } from "@/store";
+import { mapStores } from "pinia";
+
 export default {
   name: "AppHome",
   components: {
     HomeCard
   },
-  data() {
-    return {
-      newsList: newsList
-    };
+  computed: {
+    ...mapStores(useMainStore),
+    newsList() {
+      return this.mainStore.newsList;
+    }
   }
 }
 </script>

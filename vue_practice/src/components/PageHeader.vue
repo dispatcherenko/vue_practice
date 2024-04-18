@@ -7,9 +7,13 @@
         <div class="page-header__logo-circle"></div>
       </div>
       <nav class="page-header__nav">
-        <button type="button" class="page-header__nav-item" @click="$emit('setActiveTab', 'home')">Главная</button>
-        <button type="button" class="page-header__nav-item" @click="$emit('setActiveTab', 'rules')">Правила</button>
-        <button type="button" class="page-header__nav-item" @click="$emit('setActiveTab', 'contacts')">Контакты</button>
+        <router-link to="/" class="page-header__nav-item">Главная</router-link>
+
+        <router-link to="/favorites" class="page-header__nav-item">Избранное</router-link>
+
+        <router-link to="/rules" class="page-header__nav-item">Правила</router-link>
+
+        <router-link :to="{path: '/contacts', query: contacts }" class="page-header__nav-item">Контакты</router-link>
       </nav>
     </div>
   </header>
@@ -22,7 +26,17 @@ export default {
   components: {
     SvgLogo
   },
-  emits: ['setActiveTab']
+  data() {
+    return {
+      contacts: {
+        city: 'Новосибирск',
+        street: "Железнодорожная, д.77",
+        legal_address: "Лазо, д.19",
+        inn: "584756452",
+        phone_number: "78-82-12"
+      }
+    };
+  }
 }
 </script>
 
@@ -68,6 +82,7 @@ export default {
   }
   &__nav-item {
     color: @white;
+    text-decoration: none;
     font-weight: bold;
     font-size: 14px;
     letter-spacing: 1px;
