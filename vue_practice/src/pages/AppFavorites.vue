@@ -28,7 +28,9 @@
     computed: {
       ...mapStores(useMainStore),
       favoritesList() {
-        return this.mainStore.favoritesList;
+        const list = this.mainStore.favorites;
+        console.log('favoritesList:', list); // Отладочный вывод
+        return list;
       }
     }
   }

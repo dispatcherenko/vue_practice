@@ -26,7 +26,7 @@ export const useMainStore = defineStore('main', {
         this.favorites[id] = true;
       }
 
-      this.$global.$cookies.set("favorites", JSON.stringify(this.favorites))
+      this.$cookies.set("favorites", JSON.stringify(this.favorites))
     }
   }
 });
