@@ -3,7 +3,7 @@
     <div class="home-card__fav">
       <SvgStar
         class="home-card__favorite"
-        :class="{'home-card__favorite--active': mainStore.favorites[id]}"
+        :class="{'home-card__favorite--active': isFavorite}"
         @click="mainStore.setFavorite(id)"
       />
     </div>
@@ -12,7 +12,7 @@
       class="home-card__title"
       @click="$router.push({name: 'card', params: {id: id} })"
     >
-      {{ title }}
+      {{ title }} 
     </h4>
 
     <p class="home-card__description">{{ description }}</p>
@@ -41,6 +41,10 @@ export default {
     description: {
       type: String,
       default: ""
+    },
+    isFavorite: {
+      type: Boolean,
+      default: false
     }
   },
   computed: {
@@ -88,7 +92,7 @@ export default {
         color: @light_green;
       };
     }
-
+    
     &--active {
       color: @light_green;
     }

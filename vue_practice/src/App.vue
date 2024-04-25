@@ -7,7 +7,7 @@
 
 <script>
 import PageHeader from "@/components/PageHeader";
-import newsList from "@/json/news.json";
+// import newsList from "@/json/news.json";
 import { useMainStore } from "@/store";
 import { mapStores } from "pinia";
 
@@ -15,12 +15,18 @@ export default {
   components: {
     PageHeader
   },
+  data() {
+    return {
+      limit: 10,
+      page: 1,
+      totalLimit: 100,
+      totalPages: 1
+    }
+  },
   computed: {
     ...mapStores(useMainStore)
   },
-  created() {
-    this.mainStore.newsList = newsList; 
-  }
+  
 }
 </script>
 
