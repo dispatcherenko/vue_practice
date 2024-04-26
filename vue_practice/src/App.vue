@@ -15,14 +15,6 @@ export default {
   components: {
     PageHeader
   },
-  data() {
-    return {
-      limit: 10,
-      page: 1,
-      totalLimit: 100,
-      totalPages: 1
-    }
-  },
   computed: {
     ...mapStores(useMainStore)
   },

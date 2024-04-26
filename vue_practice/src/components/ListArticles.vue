@@ -5,7 +5,7 @@
                 <div class="list-articles__list">
                     <HomeCard
                     class="list-articles__list-item"
-                    v-for="(item) in newsList"
+                    v-for="(item) in displayedList"
                     :key="item.id"
                     :title="item.title"
                     :description="item.body"
@@ -43,6 +43,12 @@
     components: {
         HomeCard
     },
+    props: {
+        listType: {
+            type: String,
+            default: 'news'
+        }
+    },
     data() {
         return {
             limit: 10,
@@ -58,6 +64,9 @@
         },
         favoritesList() {
             return this.mainStore.favoritesList;
+        },
+        displayedList() {
+            return this.listType === 'news' ? this.newsList : this.favoritesList;
         }
     },
     methods: {
@@ -88,14 +97,6 @@
         this.getNewsList()
         this.getNewsList()
     },
-    actions: {
-        setFavourite(id) {
-            this.newsList.forEach((item) => {
-            if(item?.id == id) item.isFavourite = !item.isFavourite
-            })
-        }
-    },
-  
   }
 </script>
   

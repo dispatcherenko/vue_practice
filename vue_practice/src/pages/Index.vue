@@ -1,34 +1,15 @@
 <template>
-  <ListArticles/>
+  <ListArticles :listType="'news'"/>
 </template>
 
 <script>
-import ListArticles from "@/components/ListArticles";
-import { useMainStore } from "@/store";
-import { mapStores } from "pinia";
+  import ListArticles from "@/components/ListArticles";
 
-export default {
-  name: "AppHome",
-  components: {
-    ListArticles
-  },
-  computed: {
-    ...mapStores(useMainStore),
-    newsList() {
-      return this.mainStore.newsList;
+  export default {
+    name: "AppHome",
+    components: {
+      ListArticles
     }
-  },
-  actions: {
-    setFavourite(id) {
-      this.newsList.forEach((item) => {
-        if(item?.id == id) item.isFavourite = !item.isFavourite
-      })
-    }
-  },
-
-}
+  }
 </script>
 
-<style lang="less">
-
-</style>

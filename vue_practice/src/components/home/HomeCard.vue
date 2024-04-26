@@ -4,7 +4,7 @@
       <SvgStar
         class="home-card__favorite"
         :class="{'home-card__favorite--active': isFavorite}"
-        @click="mainStore.setFavorite(id)"
+        @click="setFavorite"
       />
     </div>
 
@@ -26,6 +26,11 @@ import { useMainStore } from "@/store";
 
 export default {
   name: "HomeCard",
+  methods: {
+    setFavorite() {
+      return this.mainStore.setFavorite(this.id)
+    }
+  },
   components: {
     SvgStar,
   },
@@ -41,14 +46,13 @@ export default {
     description: {
       type: String,
       default: ""
-    },
-    isFavorite: {
-      type: Boolean,
-      default: false
     }
   },
   computed: {
-    ...mapStores(useMainStore)
+    ...mapStores(useMainStore),
+    isFavorite() {
+      return this.mainStore.favoritesList.includes(this.id);
+    }
   }
 }
 </script>
