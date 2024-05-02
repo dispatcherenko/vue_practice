@@ -4,5 +4,8 @@
     "less-loader": "^12.2.0",
     "style-resources-loader": "^1.4.1",
     "vue-cli-plugin-style-resources-loader": "~0.1.5"
+  },
+  "dependencies": {
+    "vue": "^3.4.26"
   }
 }
