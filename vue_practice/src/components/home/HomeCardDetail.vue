@@ -12,7 +12,7 @@
             </div>  
 
             <p class="home-card-detail__text">
-                {{ listItem.description }}
+                {{ listItem.body }} 
             </p>
         </div>
     </div>

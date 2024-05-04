@@ -3,8 +3,8 @@
     <div class="home-card__fav">
       <SvgStar
         class="home-card__favorite"
-        :class="{'home-card__favorite--active': mainStore.favorites[id]}"
-        @click="mainStore.setFavorite(id)"
+        :class="{'home-card__favorite--active': isFavorite}"
+        @click="setFavorite"
       />
     </div>
 
@@ -12,7 +12,7 @@
       class="home-card__title"
       @click="$router.push({name: 'card', params: {id: id} })"
     >
-      {{ title }}
+      {{ title }} 
     </h4>
 
     <p class="home-card__description">{{ description }}</p>
@@ -26,6 +26,11 @@ import { useMainStore } from "@/store";
 
 export default {
   name: "HomeCard",
+  methods: {
+    setFavorite() {
+      return this.mainStore.setFavorite(this.id)
+    }
+  },
   components: {
     SvgStar,
   },
@@ -44,7 +49,10 @@ export default {
     }
   },
   computed: {
-    ...mapStores(useMainStore)
+    ...mapStores(useMainStore),
+    isFavorite() {
+      return this.mainStore.favoritesList.includes(this.id);
+    }
   }
 }
 </script>
@@ -88,7 +96,7 @@ export default {
         color: @light_green;
       };
     }
-
+    
     &--active {
       color: @light_green;
     }
