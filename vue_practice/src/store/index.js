@@ -24,7 +24,6 @@ export const useMainStore = defineStore('main', {
       } else {
         this.favorites[id] = true;
       }
-
       localStorage.setItem('favorites', JSON.stringify(this.favorites));
     }
   }

@@ -10,6 +10,7 @@ import PageHeader from "@/components/PageHeader";
 // import newsList from "@/json/news.json";
 import { useMainStore } from "@/store";
 import { mapStores } from "pinia";
+import { onMounted } from 'vue';
 
 export default {
   components: {

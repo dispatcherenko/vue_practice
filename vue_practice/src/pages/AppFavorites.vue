@@ -9,6 +9,7 @@
     name: "AppHome",
     components: {
       ListArticles
-    }
+      HomeCard
+    },
   }
 </script>
