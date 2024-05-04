@@ -54,14 +54,16 @@ defineProps({
 
   transition:
     box-shadow 0.1s,
-    border 0.1s,
     transform 0.1s;
 
-  &:hover,
+  &:hover {
+    box-shadow: 0px 10px 20px 10px #0000000a;
+    transform: translateY(-5px);
+  }
+
   &:active {
     box-shadow: 0px 10px 20px 10px #0000000a;
-    border: 0px solid #f3f3f3;
-    transform: translateY(-5px);
+    transform: translateY(0px);
   }
 
   &__container {

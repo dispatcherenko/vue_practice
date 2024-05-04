@@ -2,33 +2,25 @@
   <div class="main-list">
     <div class="main-list__header">
       <h1 class="main-list__title">Все кроссовки</h1>
+      <select class="main-list__filter">
+        <option>По возрастанию цены</option>
+        <option>По убыванию цены</option>
+        <option>По назавнию</option>
+      </select>
       <div class="main-list__search-wrap">
         <img src="/search.svg" alt="search" class="main-list__glass" />
-        <input type="text" name="search" class="main-list__search" />
+        <input type="text" name="search" class="main-list__search" placeholder="Поиск..." />
       </div>
     </div>
     <div class="main-list__list">
       <ProductCard
-        imageUrl="/sneakers/sneakers-1.jpg"
-        title="Мужские Кроссовки Nike Blazer Mid Suede"
-        :price="12999"
+        v-for="item in items"
+        :imageUrl="item.imageUrl"
+        :title="item.title"
+        :price="item.price"
         :onClickFavorite="addToFavorite"
         :onClickAdd="addToCart"
-      />
-      <ProductCard
-        imageUrl="/sneakers/sneakers-2.jpg"
-        title="Мужские Кроссовки Nike Air Max 270"
-        :price="12999"
-      />
-      <ProductCard
-        imageUrl="/sneakers/sneakers-3.jpg"
-        title="Мужские Кроссовки Nike Blazer Mid Suede"
-        :price="8499"
-      />
-      <ProductCard
-        imageUrl="/sneakers/sneakers-4.jpg"
-        title="Кроссовки Puma X Aka Boku Future Rider"
-        :price="8999"
+        :key="item.id"
       />
     </div>
   </div>
@@ -36,6 +28,10 @@
 
 <script setup>
 import ProductCard from './ProductCard.vue'
+
+defineProps({
+  items: Array
+})
 
 function addToFavorite() {
   // if (!isFavorite) {
@@ -55,6 +51,7 @@ function addToCart() {
   &__header {
     display: flex;
     justify-content: space-between;
+    gap: 10px;
   }
 
   &__title {
@@ -63,6 +60,15 @@ function addToCart() {
     font-weight: 700;
     line-height: 38.73px;
     text-align: left;
+    flex: 1;
+  }
+
+  &__filter {
+    width: 250px;
+    border-radius: 10px;
+    border: 1px solid #f3f3f3;
+    padding: 15px;
+    box-sizing: border-box;
   }
 
   &__search-wrap {
@@ -74,12 +80,13 @@ function addToCart() {
     border-radius: 10px;
     border: 1px solid #f3f3f3;
     padding: 15px;
+    box-sizing: border-box;
     text-indent: 2em;
 
-    transition: border-color 1ms;
+    transition: border 1ms;
 
     &:focus {
-      border-color: #9b9b9b;
+      border: 1px solid #9b9b9b;
     }
   }
 
