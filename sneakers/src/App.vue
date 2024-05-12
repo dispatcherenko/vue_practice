@@ -1,8 +1,8 @@
 <template>
   <div class="app">
-    <CartRunner v-if="openCart" :cart="cart" />
+    <CartRunner v-if="openCart" :cart="cart" :totalPrice="totalPrice" />
     <div class="app__container">
-      <PageHeader @manageCart="manageCart" />
+      <PageHeader @manageCart="manageCart" :totalPrice="totalPrice" />
       <MainPage :cart="cart" />
       <PageFooter />
     </div>
@@ -14,10 +14,13 @@ import PageHeader from './components/PageHeader.vue'
 import PageFooter from './components/PageFooter.vue'
 import MainPage from './components/MainPage.vue'
 import CartRunner from './components/CartRunner.vue'
-import { provide, ref } from 'vue'
+import { computed, onMounted, provide, ref } from 'vue'
 
 const cart = ref([])
 const openCart = ref(false)
+const totalPrice = computed(() => {
+  return cart.value.reduce((sum, item) => sum + item.price, 0)
+})
 
 const manageCart = () => {
   openCart.value = !openCart.value
@@ -26,16 +29,35 @@ const manageCart = () => {
 const addToCart = (item) => {
   if (!item.isAdded) {
     cart.value.push(item)
+    console.log(cart.value)
+    item.isAdded = true
   } else {
-    cart.value.splice(cart.value.indexOf(item), 1)
+    console.log(cart.value.indexOf(item))
+    cart.value.splice(cart.value, 1)
+    item.isAdded = false
   }
-  item.isAdded = !item.isAdded
-
-  console.log(cart)
 }
+
+const removeFromCart = (item) => {
+  cart.value.splice(cart.value.indexOf(item), 1)
+  item.isAdded = false
+}
+
+const handleKeyDown = async (event) => {
+  if (event.key === 'Escape') {
+    if (openCart.value) {
+      manageCart()
+    }
+  }
+}
+
+onMounted(() => {
+  window.addEventListener('keydown', handleKeyDown)
+})
 
 provide('manageCart', {
   addToCart,
+  removeFromCart,
   manageCart
 })
 </script>

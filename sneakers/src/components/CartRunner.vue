@@ -1,6 +1,6 @@
 <template>
   <div class="cart">
-    <div class="cart__bg"></div>
+    <div class="cart__bg" @click="manageCart"></div>
     <div class="cart__container">
       <div class="cart__title-wrapper">
         <h1 class="cart__title">Корзина</h1>
@@ -12,18 +12,19 @@
         :image-url="item.imageUrl"
         :title="item.title"
         :price="item.price"
+        @on-click-remove="() => addToCart(item)"
       />
 
       <div class="cart__footer">
         <div class="cart__cost">
           <p class="cart__cost-title">Итого:</p>
           <div class="cart__cost-filler"></div>
-          <p class="cart__cost-sum">13648 руб.</p>
+          <p class="cart__cost-sum">{{ totalPriceWithDiscount }} руб.</p>
         </div>
         <div class="cart__cost">
-          <p class="cart__cost-title">Налог 5%:</p>
+          <p class="cart__cost-title">Скидка 5%:</p>
           <div class="cart__cost-filler"></div>
-          <p class="cart__cost-sum">649 руб.</p>
+          <p class="cart__cost-sum">{{ discountAmount }} руб.</p>
         </div>
         <ButtonRight class="cart__order" text="Оформить заказ" />
       </div>
@@ -32,15 +33,25 @@
 </template>
 
 <script setup>
-import { inject } from 'vue'
+import { computed, inject } from 'vue'
 import CartItem from './CartItem.vue'
 import ButtonRight from './UI/ButtonRight.vue'
 import ArrowSlider from '@/svg/ArrowSlider.vue'
 
-const { manageCart } = inject('manageCart')
+const props = defineProps({
+  cart: Array,
+  totalPrice: Number
+})
 
-defineProps({
-  cart: Array
+const { manageCart, addToCart } = inject('manageCart')
+const discount = 0.05
+
+const totalPriceWithDiscount = computed(() => {
+  return props.totalPrice * (1 - discount) // 5% скидка
+})
+
+const discountAmount = computed(() => {
+  return props.totalPrice - totalPriceWithDiscount.value
 })
 </script>
 

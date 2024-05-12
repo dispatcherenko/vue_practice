@@ -13,7 +13,7 @@
         <a @click="$emit('manageCart')" class="page-header__nav-item--cart page-header__nav-item">
           <!-- <img src="/cart.svg" alt="cart" /> -->
           <SvgCart />
-          <p>Корзина</p>
+          <p>{{ totalPrice }} руб.</p>
         </a>
       </li>
       <li>
@@ -36,6 +36,10 @@
 import SvgCart from '@/svg/SvgCart.vue'
 import SvgFavorite from '@/svg/SvgFavorite.vue'
 import SvgProfile from '@/svg/SvgProfile.vue'
+
+defineProps({
+  totalPrice: Number
+})
 </script>
 
 <style lang="less" scoped>

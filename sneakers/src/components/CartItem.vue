@@ -8,20 +8,19 @@
           <p class="cart-item__price">{{ price }} руб.</p>
         </div>
       </a>
-      <SvgClose class="cart-item__close" @click="addToCart" />
+      <SvgClose class="cart-item__close" @click="$emit('onClickRemove')" />
     </div>
   </div>
 </template>
 
 <script setup>
 import SvgClose from '@/svg/SvgClose.vue'
-import { inject } from 'vue'
+
 defineProps({
   imageUrl: String,
   title: String,
   price: Number
 })
-const { addToCart } = inject('manageCart')
 </script>
 
 <style lang="less" scoped>
