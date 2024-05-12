@@ -20,7 +20,7 @@
         </div>
         <img
           class="card__add"
-          :src="!inCart ? '/plus.svg' : '/checked.svg'"
+          :src="!isAdded ? '/plus.svg' : '/checked.svg'"
           alt="to-cart"
           @click="onClickAdd"
         />
@@ -34,11 +34,12 @@
 // import SvgLike1 from '@/svg/SvgLike-1.vue'
 
 defineProps({
+  id: Number,
   imageUrl: String,
   title: String,
   price: Number,
   isFavorite: Boolean,
-  inCart: Boolean,
+  isAdded: Boolean,
   onClickFavorite: Function,
   onClickAdd: Function
 })
@@ -93,23 +94,10 @@ defineProps({
     margin-bottom: 14px;
   }
 
-  &__like {
-    position: absolute;
-    left: 0;
-    top: 10px;
-
-    color: #f3f3f3;
-
-    transition: color 0.1s;
-
-    &:hover {
-      color: black;
-    }
-  }
-
   &__product {
     margin: 0 33px 0 35px;
     width: 90%;
+    max-height: 115px;
   }
 
   &__name {
@@ -140,6 +128,21 @@ defineProps({
   &__add {
     height: 32px;
     width: 32px;
+    color: #f3f3f3;
+    cursor: pointer;
+
+    transition: color 0.1s;
+
+    &:hover {
+      color: black;
+    }
+  }
+
+  &__like {
+    position: absolute;
+    left: 0;
+    top: 10px;
+    cursor: pointer;
     color: #f3f3f3;
 
     transition: color 0.1s;

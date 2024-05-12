@@ -10,7 +10,7 @@
 
     <ul class="page-header__nav">
       <li>
-        <a href="#" class="page-header__nav-item--cart page-header__nav-item">
+        <a @click="$emit('manageCart')" class="page-header__nav-item--cart page-header__nav-item">
           <!-- <img src="/cart.svg" alt="cart" /> -->
           <SvgCart />
           <p>Корзина</p>

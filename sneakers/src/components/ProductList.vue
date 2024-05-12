@@ -2,24 +2,33 @@
   <div class="main-list">
     <div class="main-list__header">
       <h1 class="main-list__title">Все кроссовки</h1>
-      <select class="main-list__filter">
-        <option>По возрастанию цены</option>
-        <option>По убыванию цены</option>
-        <option>По назавнию</option>
+      <select @change="onChangeSort" class="main-list__filter">
+        <option value="price">По возрастанию цены</option>
+        <option value="-price">По убыванию цены</option>
+        <option value="title">По назавнию</option>
       </select>
       <div class="main-list__search-wrap">
         <img src="/search.svg" alt="search" class="main-list__glass" />
-        <input type="text" name="search" class="main-list__search" placeholder="Поиск..." />
+        <input
+          @input="onChangeSearch"
+          type="text"
+          name="search"
+          class="main-list__search"
+          placeholder="Поиск..."
+        />
       </div>
     </div>
     <div class="main-list__list">
       <ProductCard
         v-for="item in items"
+        :id="item.id"
         :imageUrl="item.imageUrl"
         :title="item.title"
         :price="item.price"
-        :onClickFavorite="addToFavorite"
-        :onClickAdd="addToCart"
+        :isFavorite="item.isFavorite"
+        :isAdded="item.isAdded"
+        :onClickFavorite="() => emit('addToFavorite', item)"
+        :onClickAdd="() => emit('addToCart', item)"
         :key="item.id"
       />
     </div>
@@ -30,20 +39,12 @@
 import ProductCard from './ProductCard.vue'
 
 defineProps({
-  items: Array
+  items: Array,
+  onChangeSort: Function,
+  onChangeSearch: Function
 })
 
-function addToFavorite() {
-  // if (!isFavorite) {
-  alert('Добавлено в избранное')
-  // } else {
-  //   alert('Удалено из избранное')
-  // }
-}
-
-function addToCart() {
-  alert('Добавлено в корзину')
-}
+const emit = defineEmits(['addToFavorite', 'addToCart'])
 </script>
 
 <style lang="less" scoped>
@@ -100,7 +101,7 @@ function addToCart() {
   &__list {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: left;
     margin-top: 40px;
     gap: 35px;
   }

@@ -2,24 +2,26 @@
   <div class="cart-item">
     <div class="cart-item__container">
       <a class="cart-item__link">
-        <img :src="ImageUrl" alt="picture" class="cart-item__img" />
+        <img :src="imageUrl" alt="picture" class="cart-item__img" />
         <div class="cart-item__title-wrapper">
           <p class="cart-item__title">{{ title }}</p>
           <p class="cart-item__price">{{ price }} руб.</p>
         </div>
       </a>
-      <SvgClose class="cart-item__close" />
+      <SvgClose class="cart-item__close" @click="addToCart" />
     </div>
   </div>
 </template>
 
 <script setup>
 import SvgClose from '@/svg/SvgClose.vue'
+import { inject } from 'vue'
 defineProps({
-  ImageUrl: String,
+  imageUrl: String,
   title: String,
-  price: String
+  price: Number
 })
+const { addToCart } = inject('manageCart')
 </script>
 
 <style lang="less" scoped>

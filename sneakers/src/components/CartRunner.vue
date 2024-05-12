@@ -4,13 +4,16 @@
     <div class="cart__container">
       <div class="cart__title-wrapper">
         <h1 class="cart__title">Корзина</h1>
-        <ArrowSlider class="cart__exit" />
+        <ArrowSlider class="cart__exit" @click="manageCart" />
       </div>
       <CartItem
-        ImageUrl="sneakers/sneakers-1.jpg"
-        title="Мужские Кроссовки Nike Air Max 270"
-        :price="12999"
+        v-for="item in cart"
+        :key="item.id"
+        :image-url="item.imageUrl"
+        :title="item.title"
+        :price="item.price"
       />
+
       <div class="cart__footer">
         <div class="cart__cost">
           <p class="cart__cost-title">Итого:</p>
@@ -29,10 +32,16 @@
 </template>
 
 <script setup>
+import { inject } from 'vue'
 import CartItem from './CartItem.vue'
 import ButtonRight from './UI/ButtonRight.vue'
-
 import ArrowSlider from '@/svg/ArrowSlider.vue'
+
+const { manageCart } = inject('manageCart')
+
+defineProps({
+  cart: Array
+})
 </script>
 
 <style lang="less" scoped>

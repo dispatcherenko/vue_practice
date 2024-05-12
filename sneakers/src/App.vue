@@ -1,31 +1,42 @@
 <template>
   <div class="app">
-    <!-- <CartRunner /> -->
+    <CartRunner v-if="openCart" :cart="cart" />
     <div class="app__container">
-      <PageHeader />
-      <MainPage :items="items" />
+      <PageHeader @manageCart="manageCart" />
+      <MainPage :cart="cart" />
+      <PageFooter />
     </div>
   </div>
 </template>
 
 <script setup>
-import { onMounted, ref } from 'vue'
-import axios from 'axios'
-
 import PageHeader from './components/PageHeader.vue'
+import PageFooter from './components/PageFooter.vue'
 import MainPage from './components/MainPage.vue'
 import CartRunner from './components/CartRunner.vue'
+import { provide, ref } from 'vue'
 
-const items = ref([])
+const cart = ref([])
+const openCart = ref(false)
 
-onMounted(async () => {
-  try {
-    const { data } = await axios.get('https://ce942b40b258bf22.mokky.dev/items')
-    console.log('loaded')
-    items.value = data
-  } catch (ex) {
-    console.log(ex)
+const manageCart = () => {
+  openCart.value = !openCart.value
+}
+
+const addToCart = (item) => {
+  if (!item.isAdded) {
+    cart.value.push(item)
+  } else {
+    cart.value.splice(cart.value.indexOf(item), 1)
   }
+  item.isAdded = !item.isAdded
+
+  console.log(cart)
+}
+
+provide('manageCart', {
+  addToCart,
+  manageCart
 })
 </script>
 
@@ -43,6 +54,10 @@ body {
 
 ul {
   list-style-type: none;
+}
+
+a {
+  cursor: pointer;
 }
 
 a,
