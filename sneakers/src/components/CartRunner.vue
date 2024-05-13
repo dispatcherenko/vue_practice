@@ -12,7 +12,7 @@
         :image-url="item.imageUrl"
         :title="item.title"
         :price="item.price"
-        @on-click-remove="() => addToCart(item)"
+        @removeFromCart="() => removeFromCart(item)"
       />
 
       <div class="cart__footer">
@@ -26,7 +26,12 @@
           <div class="cart__cost-filler"></div>
           <p class="cart__cost-sum">{{ discountAmount }} руб.</p>
         </div>
-        <ButtonRight class="cart__order" text="Оформить заказ" />
+        <ButtonRight
+          class="cart__order"
+          text="Оформить заказ"
+          @click="$emit('createOrder')"
+          :disabled="cart.length > 0 ? false : true"
+        />
       </div>
     </div>
   </div>
@@ -34,6 +39,7 @@
 
 <script setup>
 import { computed, inject } from 'vue'
+
 import CartItem from './CartItem.vue'
 import ButtonRight from './UI/ButtonRight.vue'
 import ArrowSlider from '@/svg/ArrowSlider.vue'
@@ -43,11 +49,11 @@ const props = defineProps({
   totalPrice: Number
 })
 
-const { manageCart, addToCart } = inject('manageCart')
+const { manageCart, removeFromCart } = inject('manageCart')
 const discount = 0.05
 
 const totalPriceWithDiscount = computed(() => {
-  return props.totalPrice * (1 - discount) // 5% скидка
+  return Math.floor(props.totalPrice * (1 - discount)) // 5% скидка
 })
 
 const discountAmount = computed(() => {

@@ -8,7 +8,7 @@
           <p class="cart-item__price">{{ price }} руб.</p>
         </div>
       </a>
-      <SvgClose class="cart-item__close" @click="$emit('onClickRemove')" />
+      <SvgClose class="cart-item__close" @click="$emit('removeFromCart')" />
     </div>
   </div>
 </template>

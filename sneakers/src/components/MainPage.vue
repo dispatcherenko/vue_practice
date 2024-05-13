@@ -8,7 +8,7 @@
         :onChangeSort="onChangeSort"
         :onChangeSearch="onChangeSearch"
         @addToFavorite="addToFavorite"
-        @addToCart="addToCart"
+        @cartAddRemove="cartAddRemove"
       />
     </div>
   </div>
@@ -25,7 +25,7 @@ defineProps({
   cart: Array
 })
 
-const { addToCart } = inject('manageCart')
+const { cartAddRemove } = inject('manageCart')
 
 const items = ref([])
 

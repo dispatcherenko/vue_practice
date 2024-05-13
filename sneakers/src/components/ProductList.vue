@@ -28,7 +28,7 @@
         :isFavorite="item.isFavorite"
         :isAdded="item.isAdded"
         :onClickFavorite="() => emit('addToFavorite', item)"
-        :onClickAdd="() => emit('addToCart', item)"
+        :cartAddRemove="() => emit('cartAddRemove', item)"
         :key="item.id"
       />
     </div>
@@ -44,7 +44,7 @@ defineProps({
   onChangeSearch: Function
 })
 
-const emit = defineEmits(['addToFavorite', 'addToCart'])
+const emit = defineEmits(['addToFavorite', 'cartAddRemove'])
 </script>
 
 <style lang="less" scoped>

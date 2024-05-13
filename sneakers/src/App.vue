@@ -1,6 +1,6 @@
 <template>
   <div class="app">
-    <CartRunner v-if="openCart" :cart="cart" :totalPrice="totalPrice" />
+    <CartRunner v-if="openCart" :cart="cart" :totalPrice="totalPrice" @createOrder="createOrder" />
     <div class="app__container">
       <PageHeader @manageCart="manageCart" :totalPrice="totalPrice" />
       <MainPage :cart="cart" />
@@ -10,11 +10,13 @@
 </template>
 
 <script setup>
+import { computed, onMounted, provide, ref } from 'vue'
+import axios from 'axios'
+
 import PageHeader from './components/PageHeader.vue'
 import PageFooter from './components/PageFooter.vue'
 import MainPage from './components/MainPage.vue'
 import CartRunner from './components/CartRunner.vue'
-import { computed, onMounted, provide, ref } from 'vue'
 
 const cart = ref([])
 const openCart = ref(false)
@@ -22,25 +24,43 @@ const totalPrice = computed(() => {
   return cart.value.reduce((sum, item) => sum + item.price, 0)
 })
 
+const createOrder = async () => {
+  try {
+    const order = {
+      items: cart.value,
+      totalPrice: totalPrice.value
+    }
+    await axios.post(`https://ce942b40b258bf22.mokky.dev/orders`, order)
+    cart.value = []
+    return true
+  } catch (err) {
+    console.log(err)
+    return false
+  }
+}
+
 const manageCart = () => {
   openCart.value = !openCart.value
 }
 
 const addToCart = (item) => {
-  if (!item.isAdded) {
-    cart.value.push(item)
-    console.log(cart.value)
-    item.isAdded = true
-  } else {
-    console.log(cart.value.indexOf(item))
-    cart.value.splice(cart.value, 1)
-    item.isAdded = false
-  }
+  console.log(cart.value)
+  cart.value.push(item)
+  item.isAdded = true
 }
 
 const removeFromCart = (item) => {
+  console.log(cart.value.indexOf(item))
   cart.value.splice(cart.value.indexOf(item), 1)
   item.isAdded = false
+}
+
+const cartAddRemove = (item) => {
+  if (!item.isAdded) {
+    addToCart(item)
+  } else {
+    removeFromCart(item)
+  }
 }
 
 const handleKeyDown = async (event) => {
@@ -56,8 +76,8 @@ onMounted(() => {
 })
 
 provide('manageCart', {
-  addToCart,
   removeFromCart,
+  cartAddRemove,
   manageCart
 })
 </script>

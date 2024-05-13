@@ -22,7 +22,7 @@
           class="card__add"
           :src="!isAdded ? '/plus.svg' : '/checked.svg'"
           alt="to-cart"
-          @click="onClickAdd"
+          @click="cartAddRemove"
         />
       </div>
     </div>
@@ -41,7 +41,7 @@ defineProps({
   isFavorite: Boolean,
   isAdded: Boolean,
   onClickFavorite: Function,
-  onClickAdd: Function
+  cartAddRemove: Function
 })
 </script>
 
