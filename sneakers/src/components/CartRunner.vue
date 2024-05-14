@@ -6,32 +6,45 @@
         <h1 class="cart__title">Корзина</h1>
         <ArrowSlider class="cart__exit" @click="manageCart" />
       </div>
-      <CartItem
-        v-for="item in cart"
-        :key="item.id"
-        :image-url="item.imageUrl"
-        :title="item.title"
-        :price="item.price"
-        @removeFromCart="() => removeFromCart(item)"
+
+      <InfoBlock
+        v-if="isCartEmpty"
+        image-url="package-icon.png"
+        title="Корзина пустая"
+        description="Добавьте хотя бы одну пару кроссовок, чтобы сделать заказ."
+        button-text="Вернуться назад"
       />
 
-      <div class="cart__footer">
-        <div class="cart__cost">
-          <p class="cart__cost-title">Итого:</p>
-          <div class="cart__cost-filler"></div>
-          <p class="cart__cost-sum">{{ totalPriceWithDiscount }} руб.</p>
+      <div v-if="!isCartEmpty" class="cart__lower">
+        <div class="cart__list">
+          <CartItem
+            v-for="item in cart"
+            :key="item.id"
+            :image-url="item.imageUrl"
+            :title="item.title"
+            :price="item.price"
+            @removeFromCart="() => removeFromCart(item)"
+          />
         </div>
-        <div class="cart__cost">
-          <p class="cart__cost-title">Скидка 5%:</p>
-          <div class="cart__cost-filler"></div>
-          <p class="cart__cost-sum">{{ discountAmount }} руб.</p>
+
+        <div class="cart__footer">
+          <div class="cart__cost">
+            <p class="cart__cost-title">Итого:</p>
+            <div class="cart__cost-filler"></div>
+            <p class="cart__cost-sum">{{ totalPriceWithDiscount }} руб.</p>
+          </div>
+          <div class="cart__cost">
+            <p class="cart__cost-title">Скидка 5%:</p>
+            <div class="cart__cost-filler"></div>
+            <p class="cart__cost-sum">{{ discountAmount }} руб.</p>
+          </div>
+          <ButtonRight
+            class="cart__order"
+            text="Оформить заказ"
+            @click="$emit('createOrder')"
+            :disabled="cart.length > 0 ? false : true"
+          />
         </div>
-        <ButtonRight
-          class="cart__order"
-          text="Оформить заказ"
-          @click="$emit('createOrder')"
-          :disabled="cart.length > 0 ? false : true"
-        />
       </div>
     </div>
   </div>
@@ -43,10 +56,19 @@ import { computed, inject } from 'vue'
 import CartItem from './CartItem.vue'
 import ButtonRight from './UI/ButtonRight.vue'
 import ArrowSlider from '@/svg/ArrowSlider.vue'
+import InfoBlock from './InfoBlock.vue'
 
 const props = defineProps({
   cart: Array,
   totalPrice: Number
+})
+
+const isCartEmpty = computed(() => {
+  if (props.cart.length === 0) {
+    return true
+  } else {
+    return false
+  }
 })
 
 const { manageCart, removeFromCart } = inject('manageCart')
@@ -82,8 +104,10 @@ const discountAmount = computed(() => {
     position: fixed;
     display: flex;
     flex-direction: column;
+    box-sizing: border-box;
     right: 0;
     top: 0;
+    width: 385px;
     height: 100%;
     background-color: #ffffff;
     z-index: 2;
@@ -96,8 +120,19 @@ const discountAmount = computed(() => {
     justify-content: space-between;
   }
 
+  &__lower {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  &__list {
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+
   &__footer {
-    margin: auto 0 60px 0;
+    margin: auto 0 0;
   }
 
   &__title {
