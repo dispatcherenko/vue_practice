@@ -13,10 +13,11 @@
         title="Корзина пустая"
         description="Добавьте хотя бы одну пару кроссовок, чтобы сделать заказ."
         button-text="Вернуться назад"
+        @manage-cart="manageCart"
       />
 
       <div v-if="!isCartEmpty" class="cart__lower">
-        <div class="cart__list">
+        <div class="cart__list" v-auto-animate>
           <CartItem
             v-for="item in cart"
             :key="item.id"
@@ -88,7 +89,7 @@ const discountAmount = computed(() => {
   position: fixed;
   height: 100%;
   width: 100%;
-  z-index: 1;
+  z-index: 10;
   width: 358px;
 
   &__bg {

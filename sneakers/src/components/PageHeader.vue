@@ -1,12 +1,12 @@
 <template>
   <header class="page-header">
-    <a class="page-header__logo" href="#">
+    <RouterLink class="page-header__logo" to="/">
       <img src="/logo.png" alt="logo" class="page-header__logo-img" />
       <div class="page-header__logo-title">
         <h1 class="page-header__title">SNEAKERSHOP</h1>
         <p class="page-header__slogan">Магазин лучших кроссовок</p>
       </div>
-    </a>
+    </RouterLink>
 
     <ul class="page-header__nav">
       <li>
@@ -17,10 +17,10 @@
         </a>
       </li>
       <li>
-        <a href="#" class="page-header__nav-item">
+        <RouterLink to="favorites" class="page-header__nav-item">
           <SvgFavorite />
           <p>Избранное</p>
-        </a>
+        </RouterLink>
       </li>
       <li>
         <a href="#" class="page-header__nav-item">

@@ -3,7 +3,7 @@
     <img :src="imageUrl" alt="img" class="info__image" />
     <h1 class="info__title">{{ title }}</h1>
     <p class="info__text">{{ description }}</p>
-    <ButtonLeft :text="buttonText" />
+    <ButtonLeft :text="buttonText" @click="$emit('manageCart')" />
   </div>
 </template>
 

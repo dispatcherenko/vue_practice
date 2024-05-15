@@ -1,9 +1,17 @@
 <template>
   <div class="app">
-    <CartRunner v-if="openCart" :cart="cart" :totalPrice="totalPrice" @createOrder="createOrder" />
+    <transition name="fade">
+      <CartRunner
+        v-if="openCart"
+        :open-cart="openCart"
+        :cart="cart"
+        :totalPrice="totalPrice"
+        @createOrder="createOrder"
+      />
+    </transition>
     <div class="app__container">
       <PageHeader @manageCart="manageCart" :totalPrice="totalPrice" />
-      <MainPage />
+      <router-view></router-view>
       <PageFooter />
     </div>
   </div>
@@ -15,7 +23,6 @@ import axios from 'axios'
 
 import PageHeader from './components/PageHeader.vue'
 import PageFooter from './components/PageFooter.vue'
-import MainPage from './components/MainPage.vue'
 import CartRunner from './components/CartRunner.vue'
 
 const items = ref([])
@@ -204,6 +211,16 @@ watch(
   src:
     local('Inter'),
     url(/fonts/Inter/Inter-VariableFont_slnt,wght.ttf) format('truetype');
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.1s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
 }
 
 body {

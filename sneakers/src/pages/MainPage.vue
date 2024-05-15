@@ -2,7 +2,7 @@
   <div class="main">
     <div class="main__container">
       <PromoSlider class="main__slider" />
-      <MainList
+      <ProductList
         class="main__list"
         :items="items"
         :onChangeSort="onChangeSort"
@@ -17,8 +17,8 @@
 <script setup>
 import { inject } from 'vue'
 
-import PromoSlider from './PromoSlider.vue'
-import MainList from './ProductList.vue'
+import PromoSlider from '../components/PromoSlider.vue'
+import ProductList from '../components/ProductList.vue'
 
 const { cartAddRemove } = inject('manageCart')
 const { addToFavorite } = inject('addToFavorite')

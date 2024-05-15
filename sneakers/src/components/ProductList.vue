@@ -18,7 +18,7 @@
         />
       </div>
     </div>
-    <div class="main-list__list">
+    <div class="main-list__list" v-auto-animate>
       <ProductCard
         v-for="item in items"
         :id="item.id"
