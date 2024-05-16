@@ -1,5 +1,6 @@
 <template>
   <div class="main-list">
+<<<<<<< Updated upstream
     <div class="main-list__header">
       <h1 class="main-list__title">Все кроссовки</h1>
       <select @change="onChangeSort" class="main-list__filter">
@@ -18,6 +19,8 @@
         />
       </div>
     </div>
+=======
+>>>>>>> Stashed changes
     <div class="main-list__list" v-auto-animate>
       <ProductCard
         v-for="item in items"
@@ -39,9 +42,13 @@
 import ProductCard from './ProductCard.vue'
 
 defineProps({
+<<<<<<< Updated upstream
   items: Array,
   onChangeSort: Function,
   onChangeSearch: Function
+=======
+  items: Array
+>>>>>>> Stashed changes
 })
 
 const emit = defineEmits(['addToFavorite', 'cartAddRemove'])
@@ -49,6 +56,7 @@ const emit = defineEmits(['addToFavorite', 'cartAddRemove'])
 
 <style lang="less" scoped>
 .main-list {
+<<<<<<< Updated upstream
   &__header {
     display: flex;
     justify-content: space-between;
@@ -98,6 +106,8 @@ const emit = defineEmits(['addToFavorite', 'cartAddRemove'])
     margin: auto auto auto 0;
   }
 
+=======
+>>>>>>> Stashed changes
   &__list {
     display: flex;
     flex-wrap: wrap;
