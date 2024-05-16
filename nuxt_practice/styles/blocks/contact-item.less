@@ -1,0 +1,131 @@
+.contacts-item {
+    display: flex;
+    gap: 54px;
+    align-items: center;
+    @media @bw1340 {
+        flex-direction: column;
+        text-align: center;
+        max-width: 195px;
+    }
+    @media @bw768 {
+        flex-direction: initial;
+        text-align: initial;
+        gap: 30px;
+        align-items: center;
+        max-width: 100%;
+    }
+
+
+    &--vert {
+        flex-direction: column;
+        text-align: center;
+        gap: 40px;
+        @media @bw1340 {
+            max-width: 280px;
+        }
+        @media @bw768 {
+            flex-direction: column;
+            text-align: center;
+            gap: 40px;
+            max-width: 241px;
+        }
+
+    }
+    
+    &__icon {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 110px;
+        height: 110px;
+        background: @black;
+        color: @red;
+
+        @media @bw768 {
+            width: 65px;
+            height: 65px;
+        }
+    }
+
+    &__title {
+        color: @black;
+
+        /* Desk. Типографика Cайт 1/Подзаголовок/3 Подзаголовок */
+        font-family: Open Sans;
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: normal;
+
+        margin: 0 0 10px;
+
+        @media @bw1020 {
+            font-size: 18px;
+        }
+        @media @bw768 {
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+    }
+
+    &__info {
+        max-width: 401px;
+        width: 100%;
+        color: @black;
+        font-family: Open Sans;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+
+        display: block;
+        margin: 5px 0 5px;
+
+        @media @bw1020 {
+            font-size: 16px;
+        }
+        @media @bw768 {
+            font-size: 14px;
+            margin:0;
+        }
+
+        &[href] {
+            text-decoration: none;
+            transition: color 0.2s;
+            &:hover {
+                @media (hover:hover) {
+                    color: @red;
+                }
+            }
+            &:active { 
+                color: @red;
+            }
+        }
+    }
+
+    &__content {
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__row {
+        display: flex;
+        flex-direction: row;
+        justify-content: start;
+        width: 100%;
+        gap:13%;
+
+        @media (max-width: 1420px){
+        }
+        @media @bw1340 {
+            gap: 0;
+            justify-content: space-between;
+            margin-bottom: 50px;
+        }
+        @media @bw768 {
+            align-items: center;
+            flex-direction: column;
+            gap: 40px;
+        }
+    }
+}

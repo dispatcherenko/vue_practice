@@ -1,0 +1,378 @@
+.form {
+  &__list {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    row-gap: 58px;
+    margin-bottom: 30px;
+    justify-content: space-between;
+    @media @bw1340 {
+      gap: 15%;
+    }
+    @media @bw768 {
+      flex-direction: column;
+      gap: 50px;
+    }
+  }
+
+  &__contact {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    column-gap: 59px;
+    row-gap: 30px;
+    margin-bottom: 50px;
+
+    @media @bw768 {
+      flex-direction: column;
+    }
+  }
+
+  &__group1 {
+    width: calc(50% - 30px);
+    @media @bw768 {
+      width: 100%;
+    }
+  }
+
+  &__field {
+    @media @bw1340 {
+      min-width: 240px;
+    }
+    &--w50 {
+      width: calc(50% - 30px);
+      @media @bw768 {
+        width: 100%;
+      }
+    }
+  }
+
+  &__btns {
+    display: flex;
+    column-gap: 60px;
+    @media @bw768 {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+
+  &__btn,
+  &__close-button {
+    max-width: 400px;
+    width: 100%;
+    margin-top: 40px;
+  }
+
+  &__close-button {
+    display: flex;
+    max-width: 401px;
+    max-height: 52px;
+    width: 100%;
+    margin-top: 49px;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__close {
+    cursor: pointer;
+    
+    color: @black;
+    font-family: Open Sans;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    text-decoration: underline;
+    text-decoration-color: @gray-text;
+    border: 0;
+    background-color: transparent;
+    transition: text-decoration 0.2s;
+    &:hover {
+      @media (hover:hover) {
+        color: @red;
+        text-decoration-color: @red;
+      }
+    }
+    &:active {
+      color: @red;
+      text-decoration-color: @red;
+    }
+  }
+}
+
+.field {
+
+  &__radio {
+    margin-bottom: 9px;
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  &__title {
+    margin: 0 0 10px;
+    font-weight: 700;
+    font-family: @font1;
+    font-size: 18px;
+    color: @black;
+    &--mb7 {
+      margin-bottom: 7px;
+    }
+  }
+
+  &__select,
+  &__text,
+  &__textarea {
+    box-sizing: border-box;
+    border: none;
+    border-radius: 5px;
+
+    background-color: @white;
+
+    height: 55px;
+
+    font-size: 16px;
+
+    width: 100%;
+  }
+  
+  &__select {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 16px 20px 15px;
+    margin-bottom: 30px;
+    width: 100%;
+  }
+
+  &__inputs {
+    display: flex;
+    gap: 15px;
+  }
+
+  &__text {
+    padding: 17px 23px 16px;
+    color: @black;
+    width: 100%;
+    &--w55 {
+      width: 55px;
+    }
+
+    &--w110 {
+      width: 110px;
+      @media @bw768 {
+        width: 100%;
+      }
+    }
+
+    &::placeholder {
+      font-size: 16px;
+      color: @gray-text;
+    }
+  }
+
+  &__label {
+    display: block;
+    margin-bottom: 5px;
+    color: @black;
+    font-family: Open Sans;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+
+    &--textarea {
+      font-weight: 700;
+      font-family: @font1;
+      font-size: 18px;
+      color: @black;
+    }
+  }
+
+  &__textarea {
+      height: 150px;
+      margin: 10px 0 30px;
+      @media @bw768 {
+        margin-top: 20px;
+      }
+  }
+
+  &__date {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 250px;
+  }
+  &__date-inputs {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    width: 100%;
+    height: 55px;
+    pointer-events: none;
+  }
+  &__date-input {
+    box-sizing: border-box;
+    display: block;
+    width: 55px;
+    height: 55px;
+    margin-right: 15px;
+    border: none;
+    border-radius: 5px;
+    background-color: @white;
+    padding: 0 5px;
+    font-size: 16px;
+    line-height: 1.375;
+    text-align: center;
+    pointer-events: none;
+    @media @bw400 {
+      font-size: 14px;
+    }
+    &--year {
+      flex-grow: 1;
+      margin-right: 0;
+    }
+  }
+  &__date-picker {
+    box-sizing: border-box;
+    position: relative;
+    width: 100%;
+    max-width: 250px;
+    height: 55px;
+    border: none;
+    border-radius: 5px;
+    opacity: 0;
+    cursor: pointer; 
+  }
+}
+
+.radio {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    &__mark {
+    box-sizing: border-box;
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 23px;
+    height: 23px;
+    border: 2px solid @black;
+    border-radius: 50%;
+    padding: 3px;
+    background-clip: content-box;
+    background-color: transparent;
+    transition: background-color 0.2s;
+    }
+
+    &__input {
+        .is-hidden();
+        &:checked {
+          &~.radio__mark {
+            background-color: @black;
+          }
+        }
+    }
+
+    &__label {
+      display: flex;
+      box-sizing: border-box;
+      padding-left: 23px;
+      position: relative;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 22px;
+      cursor: pointer;
+      min-height: 23px;
+      margin-bottom: 15px;
+    }
+
+    &__name {
+      color: @black;
+      font-family: Open Sans;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+      margin-left: 20px;
+      width: 100%;
+    }
+}
+
+.check {
+  display: flex;
+  box-sizing: border-box;
+  position: relative;
+
+  &--red {
+    color: @red;
+    .check__mark {
+      border-color: @red;
+    }
+    .check__input {
+      &:checked {
+        & ~ .check__mark {
+          background-color: @red;
+        }
+      }
+    }
+  }
+
+  &--disabled {
+    pointer-events: none;
+    opacity: 0.5;
+  }
+
+  &__input {
+    .is-hidden();
+
+    &:checked {
+      &~.check__mark {
+        background-color: @black;
+        &::after {
+          content: '';
+          display: block;
+          position: absolute;
+          top: 2px;
+          left: 7px;
+          transform: rotate(45deg);
+          width: 6px;
+          height: 12px;
+          border-bottom: 2px solid @white;
+          border-right: 2px solid @white;
+        }
+      }
+    }
+  }
+
+  &__mark {
+    display: block; 
+     box-sizing: border-box;
+     top: 0;
+     left: 0;
+     width: 24px;
+     height: 24px;
+     margin-right: 15px;
+     border: 1px solid @black;
+     background-color: transparent;
+     transition: background-color 0.2s;
+  }
+
+  &__label {
+    color: @black;
+    font-family: Open Sans;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+
+    @media @bw516 {
+      font-size: 12px;
+      font-weight: 400;
+  }
+  }
+}

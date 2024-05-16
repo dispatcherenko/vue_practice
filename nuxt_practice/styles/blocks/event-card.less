@@ -1,0 +1,109 @@
+.event-card{
+    display: flex;
+    max-width: 100%;
+    color: @black;
+
+    &__link{
+        text-decoration: none;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        &:active{
+            .event-card__title {
+                color: @red;
+                text-decoration-color: @red;
+            }
+        }
+        &:hover .event-card__title{
+            @media (hover: hover)
+            {
+                color: @red;
+                text-decoration-color: @red;
+            }
+        }
+    }
+
+    &__picture{
+        display: block;
+        position: relative;
+        width: 100%;
+        margin-bottom: 25px;
+        font-size: 0;
+        text-decoration: 0;
+        overflow: hidden;
+        &::after {
+            content: "";
+        }
+        &::before{
+            content: '';
+            display: block;
+            width: 100%;
+        }
+    }
+
+    &__img {
+        @media @bw650 {
+            width: 100%;
+        }
+    }
+
+    &__picture-img{
+        position: absolute;
+        object-fit: cover;
+    }
+
+    &__title{
+        min-height: 64px;
+        margin: 0 0 auto;
+        color: var(--1, @black);
+        font-family: Open Sans;
+        font-size: 24px;
+        font-style: normal;
+        font-weight: 700;
+        transition: color 0.2s, text-decoration-color 0.2s;
+        text-decoration: underline;
+        text-decoration-color: transparent;
+
+        @media @bw1660 {
+            margin: 0 0 10px;
+        }
+        @media @bw1340 {
+            min-height: 54px;
+            font-size: 20px;
+            line-height: 27px;
+        }
+        @media @bw768 {
+            min-height: 44px;
+            font-size: 16px;
+            line-height: 22px;
+        }
+    }
+
+    &__text{
+        margin: 0 0 15px;
+        color: var(--1, @black);
+        font-family: Open Sans;
+        font-size: 16px;
+        font-weight: 400;
+    }
+
+    &__description {
+        font-size: 16px;
+        line-height: 22px;
+        color: @black;
+        font-family: Open Sans;
+        font-weight: 400;
+
+        @media @bw1020 {
+            font-size: 14px;
+            line-height: 19px;
+        }
+    }
+
+    &__time{
+        color: var(--1, @black);
+        font-family: Open Sans;
+        font-size: 14px;
+        font-weight: 300;
+    }
+}
