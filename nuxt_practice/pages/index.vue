@@ -10,6 +10,11 @@
         <p class="main-header__text">место для настоящего</p>
       </header>
 
+      <Partner />
+      <About />
+      <!-- <Upcoming /> -->
+      <!-- <BlogListing /> -->
+      <Contacts />
       <!-- @@include("blocks/partner.html", {class:'home__partner'})
       @@include("blocks/about.html", {class:'home__about'})
       @@include("blocks/upcoming.html", {class:'home__upcoming'})

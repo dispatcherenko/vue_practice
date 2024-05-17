@@ -1,0 +1,73 @@
+<template>
+  <section class="upcoming @@class">
+    <div class="upcoming__top-border"></div>
+    <div class="upcoming__container">
+      <h2 class="upcoming__title section-title">МЕРОПРИЯТИЯ</h2>
+      <div class="upcoming__swiper swiper swiper--3s js-swiper">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide">
+            @@include('event-card.html', { "class": "upcoming__event-card",
+            "img": "assets/images/events/Nirvana.jpg", "alt": "nirvana",
+            "webp-desktop": "assets/images/events/Nirvana.webp", "webp-mobile":
+            "assets/images/events/Nirvana-mobile.webp", "title": "Собираемся и
+            слушаем альбом Nirvana", "descr": "Это третий альбом группы,
+            выпущенный после смерти Курта Кобейна и первый, содержащий студийный
+            материал.", "time": "07.12.2022 | начало 18.00", "datetime":
+            "2022-12-07T18:00" })
+          </div>
+          <div class="swiper-slide">
+            @@include('event-card.html', { "class": "upcoming__event-card",
+            "img": "assets/images/events/stuff.jpg", "alt": "stuff",
+            "webp-desktop": "assets/images/events/stuff.webp", "webp-mobile":
+            "assets/images/events/stuff-mobile.webp", "title": "Есть тема, нужно
+            обсудить с HowStuffWorks", "descr": "Один из самых популярных
+            подкастов в мире. В нём авторы объясняют, как устроены разные
+            вещи.", "time": "14.12.2022 | начало 18.30", "datetime":
+            "2022-12-14T18:30" })
+          </div>
+
+          <div class="swiper-slide">
+            @@include('event-card.html', { "class": "upcoming__event-card",
+            "img": "assets/images/events/Sade.jpg", "alt": "stuff",
+            "webp-desktop": "assets/images/events/Sade.webp", "webp-mobile":
+            "assets/images/events/Sade-mobile.webp", "title": "Вечер | The Best
+            of Sade", "descr": "Музыка группы имеет эклектичный характер,
+            сочетая в себе элементы музыки соул, джаза, ритм-блюза и фанка.",
+            "time": "16.12.2022 | начало 20.00", "datetime": "2022-12-16T20:00"
+            })
+          </div>
+
+          <div class="swiper-slide">
+            @@include('event-card.html', { "class": "upcoming__event-card",
+            "img": "assets/images/events/Sade.jpg", "alt": "stuff",
+            "webp-desktop": "assets/images/events/Sade.webp", "webp-mobile":
+            "assets/images/events/Sade-mobile.webp", "title": "Вечер | The Best
+            of Sade", "descr": "Музыка группы имеет эклектичный характер,
+            сочетая в себе элементы музыки соул, джаза, ритм-блюза и фанка.",
+            "time": "16.12.2022 | начало 20.00", "datetime": "2022-12-16T20:00"
+            })
+          </div>
+        </div>
+        <footer class="swiper-footer">
+          <button type="button" class="swiper-arrow-prev arrow arrow--left">
+            <svg class="arrow__icon" width="92" height="62">
+              <use xlink:href="assets/icons/symbols.svg#link"></use>
+            </svg>
+          </button>
+          <div class="swiper-pagination"></div>
+          <button type="button" class="swiper-arrow-next arrow">
+            <svg class="arrow__icon" width="92" height="62">
+              <use xlink:href="assets/icons/symbols.svg#link"></use>
+            </svg>
+          </button>
+        </footer>
+      </div>
+      <a href="#" class="upcoming__link link">Смотреть все</a>
+    </div>
+    <div class="upcoming__bottom-border"></div>
+  </section>
+</template>
+
+<script></script>
+
+<style lang="less" scoped></style>

@@ -1,0 +1,54 @@
+<template>
+  <section class="listing @@class">
+    <div class="listing__container">
+      <div class="listing__wrapper">
+        <h2 class="listing__title section-title">Блог</h2>
+        <div class="listing__article-list">
+          <!-- prettier-ignore -->
+          @@loop('article-card.html', [
+                {
+                    "class": "listing__article-card",
+                    "img": "assets/images/blog/theatre.jpg",
+                    "alt": "Theatre Photosession",
+                    "webp-desktop": "assets/images/blog/theatre-mobile.webp",
+                    "webp-mobile": "assets/images/blog/theatre-mobile.webp",
+                    "title": "Фотосессия в стенах Театра драмы",
+                    "descr": "Организовывая фотосессию для локального бренда одежды мы смогли воплотить все пожелания заказчика и у нас получилась отличная работа. Смотрите как это было ",
+                    "time": "26.11.2021",
+                    "datetime": "2021-11-26T00:00"
+                },
+                {
+                    "class": "listing__article-card",
+                    "img": "assets/images/blog/vr.jpg",
+                    "alt": "VR Expo",
+                    "webp-desktop": "assets/images/blog/vr-mobile.webp",
+                    "webp-mobile": "assets/images/blog/vr-mobile.webp",
+                    "title": "Выставка VR в Томске",
+                    "descr": "Клуб виртуальной реальности - это другие миры. яркие эмоции. новый опыт. ... Мы предоставляем нашим клиентам лучший игровой VR-опыт в Томске.",
+                    "time": "05.11.2022",
+                    "datetime": "2022-11-05T00:00"
+                },
+                {
+                    "class": "listing__article-card",
+                    "img": "assets/images/blog/radio.jpg",
+                    "alt": "Rocking Radio",
+                    "webp-desktop": "assets/images/blog/radio-mobile.webp",
+                    "webp-mobile": "assets/images/blog/radio-mobile.webp",
+                    "title": "Rocking radio в заброшенном ангаре",
+                    "descr": "15 электрогенераторов, километры проводов и пару тонн света. Все это для того, чтобы организовать лучшую вечеринку года для ребят из Новосибирска.",
+                    "time": "01.11.2022",
+                    "datetime": "2022-11-01T00:00"
+                }
+            ])
+        </div>
+      </div>
+      <a href="#" class="listing__link link">Смотреть все</a>
+    </div>
+  </section>
+</template>
+
+<script>
+export default {};
+</script>
+
+<style></style>

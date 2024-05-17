@@ -5,7 +5,9 @@
         <svgo-logo class="page-header__logo-img" />
       </router-link>
       <nav class="page-header__nav">
-        <a href="events.html" class="page-header__nav-link">Мероприятия</a>
+        <router-link to="/events" class="page-header__nav-link"
+          >Мероприятия</router-link
+        >
         <a href="#" class="page-header__nav-link">Блог</a>
         <a href="#" class="page-header__nav-link">О нас</a>
         <a href="#" class="page-header__nav-link">Контакты</a>
@@ -36,4 +38,241 @@
 
 <script setup></script>
 
-<style scoped></style>
+<style lang="less" scoped>
+.page-header {
+  font-family: "Open Sans", sans-serif;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 100;
+
+  height: 147px;
+
+  @media @bw768 {
+    height: 70px;
+  }
+  @media @bw1660 {
+    height: 111px;
+  }
+
+  &::before {
+    content: "";
+
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+
+    height: 100%;
+
+    background-color: #dedede80;
+
+    @supports (backdrop-filter: blur(10px)) {
+      backdrop-filter: blur(10px);
+      background-color: #dedede80;
+    }
+  }
+
+  &__container {
+    .container();
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    z-index: 1;
+  }
+
+  &__logo {
+    display: inline-block;
+    height: 147px;
+    width: 202px;
+
+    text-decoration: none;
+
+    @media @bw768 {
+      width: 96px;
+      height: 70px;
+    }
+    @media @bw1020 {
+      z-index: 2;
+    }
+    @media @bw1660 {
+      width: 152px;
+      height: 111px;
+    }
+  }
+
+  &__nav {
+    box-sizing: border-box;
+    align-items: baseline;
+    margin: 0 auto;
+    @media @bw768 {
+      padding: 150px 20px 30px;
+    }
+    @media @bw1020 {
+      display: flex;
+      flex-direction: column;
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100vh;
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 211px 30px 30px;
+      background-color: fade(@gray, 98%);
+      transition: transform 0.4s;
+      transform: translateX(-100%);
+      overflow-x: hidden;
+      overflow-y: auto;
+      @supports (backdrop-filter: blur(20px)) {
+        background-color: fade(@gray, 70%);
+        backdrop-filter: blur(20px);
+      }
+    }
+  }
+
+  &__button {
+    box-sizing: border-box;
+    padding: 15px 40px;
+
+    border: 1px solid #1f1e1e;
+    background-color: transparent;
+
+    font-weight: 600;
+    text-decoration: none;
+    line-height: normal;
+    color: #1f1e1e;
+  }
+
+  &__nav-link {
+    margin: 0 25px;
+
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 25px;
+    text-decoration: none;
+    color: #1f1e1e;
+    transition: color 0.2s;
+    @media @bw1020 {
+      margin: 0 0 40px;
+      font-size: 16px;
+      line-height: 22px;
+    }
+    &:hover {
+      @media (hover: hover) {
+        color: @red;
+      }
+    }
+    &:active {
+      color: @red;
+    }
+  }
+
+  &__right-block {
+    display: flex;
+    @media @bw1660 {
+      width: 152px;
+    }
+    @media @bw1020 {
+      width: auto;
+      margin-left: auto;
+    }
+  }
+  &__user-btn {
+    @media @bw1020 {
+      display: flex;
+      width: 40px;
+      height: 40px;
+      padding: 0;
+      border: none;
+      background: none;
+      color: @black;
+      font-size: 0;
+    }
+    &:hover {
+      background-color: @black;
+      color: @white;
+      @media @bw1020 {
+        background-color: transparent;
+      }
+    }
+  }
+
+  &__user-icon {
+    display: none;
+    @media @bw1020 {
+      display: block;
+      margin: auto;
+    }
+  }
+
+  &__nav-toggle {
+    display: none;
+
+    @media @bw768 {
+      margin-left: 5px;
+    }
+    @media @bw1020 {
+      display: block;
+      position: relative;
+      right: -11px;
+      margin-left: 18px;
+      width: 40px;
+      height: 40px;
+      border: none;
+      background: none;
+    }
+    &::before,
+    &::after {
+      content: "";
+      display: block;
+      position: absolute;
+      top: 19px;
+      left: 11px;
+      width: 18px;
+      height: 2px;
+      border-radius: 2px;
+      background-color: @black;
+      transform-origin: 50% 50%;
+      transition: transform 0.4s, box-shadow 0.4s;
+    }
+    &::before {
+      top: 13px;
+      box-shadow: 0 6px 0 @black;
+    }
+    &::after {
+      top: 25px;
+    }
+  }
+
+  &__nav-user {
+    display: none;
+
+    @media @bw1020 {
+      display: flex;
+      align-items: center;
+      margin-top: 20px;
+    }
+  }
+  &__nav-user-link {
+    color: @black;
+    font-family: Open Sans;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-decoration: none;
+    margin-right: 25px;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 22px;
+  }
+  &__nav-logout {
+    width: 24px;
+    height: 24px;
+    font-size: 0;
+  }
+}
+</style>

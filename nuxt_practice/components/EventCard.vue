@@ -1,3 +1,36 @@
+<template>
+  <article class="event-card">
+    <a href="#" class="event-card__link">
+      <picture class="event-card__picture">
+        <!-- <source
+          type="image/webp"
+          media="(max-width: 767px)"
+          srcset="@@webp-mobile"
+        />
+        <source
+          type="image/webp"
+          media="(min-width: 768px)"
+          srcset="@@webp-desktop"
+        /> -->
+        <img :src="imageUrl" alt="info" class="event-card__img" />
+      </picture>
+      <h4 class="event-card__title">{{ title }}</h4>
+      <p class="event-card__description">{{ description }}</p>
+      <time datetime="@@datetime" class="event-card__time">{{ time }}</time>
+    </a>
+  </article>
+</template>
+
+<script setup>
+defineProps({
+  imageUrl: String,
+  title: String,
+  description: String,
+  time: String,
+});
+</script>
+
+<style lang="less" scoped>
 .event-card {
   display: flex;
   max-width: 405px;
@@ -106,3 +139,4 @@
     font-weight: 300;
   }
 }
+</style>

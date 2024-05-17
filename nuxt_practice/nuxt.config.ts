@@ -1,9 +1,14 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
-import svgLoader from "vite-svg-loader";
+import { sort } from "vite-plugin-utils/sort-plugin";
+import dynamicImport from "vite-plugin-dynamic-import";
 
 export default defineNuxtConfig({
-  head: {
-    charset: "UTF-8",
+  app: {
+    head: {
+      charset: "UTF-8",
+      viewport:
+        "width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no",
+    },
   },
 
   devtools: { enabled: true },
@@ -28,6 +33,13 @@ export default defineNuxtConfig({
         },
       },
     },
+    plugins: [
+      sort({
+        plugin: dynamicImport(),
+        names: ["vite:vue", "vite:vue-jsx"],
+        enforce: "post",
+      }),
+    ],
   },
 
   modules: ["nuxt-svgo"],

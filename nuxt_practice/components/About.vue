@@ -1,0 +1,78 @@
+<template>
+  <section class="about @@class">
+    <div class="about__container">
+      <h2 class="about__section-title section-title">О нас</h2>
+      <div class="about__block">
+        <h3 class="about__title">Проект «Millennials»</h3>
+        <p class="about__text">
+          Вдохновлен молодыми идейными людьми, увлеченными творчеством, эмоциями
+          и желанием сделать мир лучше, проявить себя. У них есть талант и
+          стремление, у нас возможность помочь им воплотить их мечту в
+          реальность.
+        </p>
+        <picture class="about__picture">
+          <!-- <source
+            media="(max-width:787px)"
+            type="image/webp"
+            srcset="assets\images\about\millenials1-mobile.webp"
+          />
+          <source
+            type="image/webp"
+            srcset="assets\images\about\millenials1.webp"
+          /> -->
+          <img class="about__img" src="/images/about/millenials1.jpg" />
+        </picture>
+      </div>
+      <div class="about__block about__block--2">
+        <div class="about__picture-container">
+          <picture class="about__picture2">
+            <!-- <source
+              media="(max-width:787px)"
+              type="image/webp"
+              srcset="assets\images\about\millenials2-mobile.webp"
+            />
+            <source
+              type="image/webp"
+              srcset="assets\images\about\millenials2.webp"
+            /> -->
+            <img class="about__img" src="/images/about/millenials2.jpg" />
+          </picture>
+        </div>
+        <h3 class="about__title about__title--2">
+          Мы предоставляем площади для вашего мероприятия
+        </h3>
+        <p class="about__text about__text--grid">
+          И оказываем помощь с организацией, если вам это нужно. Наша цель:
+          вовлечь в культурную жизнь города как можно больше людей, помочь
+          молодым ребятам сделать первые шаги к своей мечте и рассказать всем о
+          том, что их волнует.
+        </p>
+      </div>
+      <div class="about__block about__block--3">
+        <picture class="about__picture3">
+          <!-- <source
+            media="(max-width:787px)"
+            type="image/webp"
+            srcset="assets\images\about\space-mobile.webp"
+          />
+          <source type="image/webp" srcset="assets\images\about\space.webp" /> -->
+          <img class="about__img2" src="/images/about/space.jpg" />
+        </picture>
+        <div class="about__wrapper">
+          <p class="about__text about__text--extra">
+            Мы уже успешно организовали и провели более 100 проектов.
+            Посмотрите, как это было классно.
+          </p>
+          <a href="#" class="about__link link">
+            <span class="link__text"> Смотреть </span>
+            <span class="link__arrow">
+              <svgo-link class="link__icon" />
+            </span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</template>
+
+<style lang="less" scoped></style>
