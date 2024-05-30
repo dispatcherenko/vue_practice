@@ -12,14 +12,9 @@
 
       <Partner />
       <About />
-      <!-- <Upcoming /> -->
-      <!-- <BlogListing /> -->
+      <Upcoming />
+      <BlogListing />
       <Contacts />
-      <!-- @@include("blocks/partner.html", {class:'home__partner'})
-      @@include("blocks/about.html", {class:'home__about'})
-      @@include("blocks/upcoming.html", {class:'home__upcoming'})
-      @@include('blocks/blog-listing.html', {"class": "home__listing"})
-      @@include('blocks/contacts.html', {"class": "home__contacts"}) -->
 
       <section class="home__doit doit">
         <div class="doit__text">

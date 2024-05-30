@@ -42,9 +42,19 @@ export default defineNuxtConfig({
     ],
   },
 
-  modules: ["nuxt-svgo"],
-  svgo: {
-    autoImportPath: "./assets/svg-icon/",
-    defaultImport: "component",
-  },
+  modules: [
+    [
+      "nuxt-svgo",
+      {
+        autoImportPath: "./assets/svg-icon/",
+        defaultImport: "component",
+      },
+    ],
+    [
+      "@pinia/nuxt",
+      {
+        autoImports: ["defineStore"],
+      },
+    ],
+  ],
 });

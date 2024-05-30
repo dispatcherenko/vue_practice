@@ -65,9 +65,7 @@
           </p>
           <a href="#" class="about__link link">
             <span class="link__text"> Смотреть </span>
-            <span class="link__arrow">
-              <svgo-link class="link__icon" />
-            </span>
+            <svgo-link class="link__arrow" width="92" height="62" />
           </a>
         </div>
       </div>

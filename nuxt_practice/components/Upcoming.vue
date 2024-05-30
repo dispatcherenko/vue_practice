@@ -3,63 +3,40 @@
     <div class="upcoming__top-border"></div>
     <div class="upcoming__container">
       <h2 class="upcoming__title section-title">МЕРОПРИЯТИЯ</h2>
-      <div class="upcoming__swiper swiper swiper--3s js-swiper">
-        <div class="swiper-wrapper">
-          <div class="swiper-slide">
-            @@include('event-card.html', { "class": "upcoming__event-card",
-            "img": "assets/images/events/Nirvana.jpg", "alt": "nirvana",
-            "webp-desktop": "assets/images/events/Nirvana.webp", "webp-mobile":
-            "assets/images/events/Nirvana-mobile.webp", "title": "Собираемся и
-            слушаем альбом Nirvana", "descr": "Это третий альбом группы,
-            выпущенный после смерти Курта Кобейна и первый, содержащий студийный
-            материал.", "time": "07.12.2022 | начало 18.00", "datetime":
-            "2022-12-07T18:00" })
-          </div>
-          <div class="swiper-slide">
-            @@include('event-card.html', { "class": "upcoming__event-card",
-            "img": "assets/images/events/stuff.jpg", "alt": "stuff",
-            "webp-desktop": "assets/images/events/stuff.webp", "webp-mobile":
-            "assets/images/events/stuff-mobile.webp", "title": "Есть тема, нужно
-            обсудить с HowStuffWorks", "descr": "Один из самых популярных
-            подкастов в мире. В нём авторы объясняют, как устроены разные
-            вещи.", "time": "14.12.2022 | начало 18.30", "datetime":
-            "2022-12-14T18:30" })
-          </div>
-
-          <div class="swiper-slide">
-            @@include('event-card.html', { "class": "upcoming__event-card",
-            "img": "assets/images/events/Sade.jpg", "alt": "stuff",
-            "webp-desktop": "assets/images/events/Sade.webp", "webp-mobile":
-            "assets/images/events/Sade-mobile.webp", "title": "Вечер | The Best
-            of Sade", "descr": "Музыка группы имеет эклектичный характер,
-            сочетая в себе элементы музыки соул, джаза, ритм-блюза и фанка.",
-            "time": "16.12.2022 | начало 20.00", "datetime": "2022-12-16T20:00"
-            })
-          </div>
-
-          <div class="swiper-slide">
-            @@include('event-card.html', { "class": "upcoming__event-card",
-            "img": "assets/images/events/Sade.jpg", "alt": "stuff",
-            "webp-desktop": "assets/images/events/Sade.webp", "webp-mobile":
-            "assets/images/events/Sade-mobile.webp", "title": "Вечер | The Best
-            of Sade", "descr": "Музыка группы имеет эклектичный характер,
-            сочетая в себе элементы музыки соул, джаза, ритм-блюза и фанка.",
-            "time": "16.12.2022 | начало 20.00", "datetime": "2022-12-16T20:00"
-            })
-          </div>
-        </div>
+      <div>
+        <Swiper
+          :loop="true"
+          :centeredSlides="true"
+          :pagination="{
+            clickable: true,
+          }"
+          :navigation="true"
+          :modules="[Virtual, Pagination, Navigation]"
+          :slidesPerView="3"
+          :spaceBetween="30"
+        >
+          <SwiperSlide
+            v-for="(item, index) in events"
+            :key="index"
+            :virtualIndex="index"
+          >
+            <EventCard
+              :image-url="item.imageUrl"
+              :title="item.title"
+              :description="item.description"
+              :time="item.time"
+              :key="item._id"
+            />
+          </SwiperSlide>
+        </Swiper>
         <footer class="swiper-footer">
-          <button type="button" class="swiper-arrow-prev arrow arrow--left">
-            <svg class="arrow__icon" width="92" height="62">
-              <use xlink:href="assets/icons/symbols.svg#link"></use>
-            </svg>
-          </button>
+          <svgo-link
+            class="swiper-arrow-prev arrow arrow--left"
+            width="92"
+            height="62"
+          />
           <div class="swiper-pagination"></div>
-          <button type="button" class="swiper-arrow-next arrow">
-            <svg class="arrow__icon" width="92" height="62">
-              <use xlink:href="assets/icons/symbols.svg#link"></use>
-            </svg>
-          </button>
+          <svgo-link class="swiper-arrow-next arrow" width="92" height="62" />
         </footer>
       </div>
       <a href="#" class="upcoming__link link">Смотреть все</a>
@@ -68,6 +45,225 @@
   </section>
 </template>
 
-<script></script>
+<script setup>
+import { Virtual, Pagination, Navigation } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/vue";
 
-<style lang="less" scoped></style>
+import events from "/json/events.json";
+</script>
+
+<style lang="less" scoped>
+.upcoming {
+  margin: 210px 0 150px;
+  position: relative;
+  @media @bw1340 {
+    margin: 200px 0 150px;
+  }
+  @media @bw768 {
+    margin: 130px 0 150px;
+  }
+  @media @bw320 {
+    margin: 100px 0 150px;
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: -100px;
+    right: -20px;
+    bottom: -20px;
+    left: -20px;
+    background-color: @white-60;
+    z-index: -1;
+
+    @media @bw1340 {
+      top: -80px;
+    }
+    @media @bw768 {
+      top: -60px;
+    }
+    @media @bw320 {
+      top: -20px;
+    }
+  }
+
+  &__top-border {
+    position: relative;
+    display: block;
+
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      width: 0;
+      height: 0;
+      top: -130px;
+
+      @media @bw1340 {
+        top: -110px;
+      }
+      @media @bw768 {
+        top: -90px;
+      }
+      @media @bw320 {
+        top: -50px;
+      }
+    }
+
+    &::before {
+      left: 0;
+      border-bottom: 30px solid @white-60;
+      border-right: 36vw solid transparent;
+    }
+
+    &::after {
+      right: 0;
+      border-bottom: 30px solid @white-60;
+      border-left: 66vw solid transparent;
+    }
+  }
+
+  &__bottom-border {
+    position: relative;
+    display: block;
+
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      width: 0;
+      height: 0;
+      top: 20px;
+    }
+
+    &::before {
+      left: 0;
+      border-top: 30px solid @white-60;
+      border-right: 66vw solid transparent;
+    }
+
+    &::after {
+      right: 0;
+      border-top: 30px solid @white-60;
+      border-left: 36vw solid transparent;
+    }
+  }
+
+  &__container {
+    .container();
+  }
+
+  &__background {
+    display: none;
+  }
+
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__list {
+    display: flex;
+
+    @media @bw768 {
+      width: 950px;
+      align-self: flex-start;
+    }
+
+    @media @bw320 {
+      align-self: flex-start;
+      width: 340%;
+    }
+  }
+
+  &__event-card {
+    width: calc(33.3333% - 60px);
+    margin: 0 30px 70px;
+
+    @media @bw768 {
+      margin: 0 15px 70px;
+    }
+    @media @bw320 {
+      margin: 0 15px 60px;
+    }
+  }
+
+  &__slider {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+    max-width: 525px;
+    width: 100%;
+
+    @media @bw768 {
+      margin-bottom: 33px;
+    }
+  }
+
+  &__arrow {
+    width: 91px;
+    height: 60px;
+    cursor: pointer;
+    transition: color 0.2s;
+    padding-top: 5px;
+
+    @media @bw768 {
+      max-height: 40px;
+    }
+
+    &:hover {
+      @media (hover: hover) {
+        color: @red;
+      }
+    }
+
+    &:active {
+      @media (hover: hover) {
+        color: @red;
+      }
+    }
+    &--rev {
+      transform: rotate(180deg);
+      padding: 0 0 5px;
+    }
+  }
+
+  &__pages {
+    display: flex;
+    max-width: 100px;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2px;
+
+    @media @bw768 {
+      max-width: 60px;
+    }
+  }
+
+  &__page {
+    width: 100%;
+    height: 2px;
+  }
+
+  &__link {
+    display: flex;
+    padding: 15px 0px 15px 40px;
+    justify-content: right;
+    align-items: flex-end;
+    gap: 10px;
+    text-decoration: none;
+    color: @black;
+    font-family: Open Sans;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+
+    &:hover {
+      color: @red;
+    }
+  }
+}
+</style>

@@ -57,14 +57,6 @@ export default {};
 .contacts {
   .container();
 
-  &__wrapper {
-    display: flex;
-    justify-content: space-between;
-    @media @bw1340 {
-      flex-direction: column-reverse;
-    }
-  }
-
   &__map {
     display: flex;
     width: 100%;
