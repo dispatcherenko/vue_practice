@@ -8,11 +8,7 @@
       </div>
 
       <InfoBlock
-<<<<<<< Updated upstream
         v-if="isCartEmpty"
-=======
-        v-if="isCartEmpty && !orderId"
->>>>>>> Stashed changes
         image-url="package-icon.png"
         title="Корзина пустая"
         description="Добавьте хотя бы одну пару кроссовок, чтобы сделать заказ."
@@ -20,18 +16,6 @@
         @manage-cart="manageCart"
       />
 
-<<<<<<< Updated upstream
-=======
-      <InfoBlock
-        v-if="isCartEmpty && orderId"
-        image-url="order-success-icon.png"
-        title="Заказ оформлен!"
-        :description="`Ваш заказ #${orderId}  скоро будет передан курьерской доставке`"
-        button-text="Вернуться назад"
-        @manage-cart="manageCart"
-      />
-
->>>>>>> Stashed changes
       <div v-if="!isCartEmpty" class="cart__lower">
         <div class="cart__list" v-auto-animate>
           <CartItem
@@ -55,16 +39,12 @@
             <div class="cart__cost-filler"></div>
             <p class="cart__cost-sum">{{ discountAmount }} руб.</p>
           </div>
-<<<<<<< Updated upstream
           <ButtonRight
             class="cart__order"
             text="Оформить заказ"
             @click="$emit('createOrder')"
             :disabled="cart.length > 0 ? false : true"
           />
-=======
-          <ButtonRight class="cart__order" text="Оформить заказ" @click="createOrder" />
->>>>>>> Stashed changes
         </div>
       </div>
     </div>
@@ -72,17 +52,12 @@
 </template>
 
 <script setup>
-<<<<<<< Updated upstream
 import { computed, inject } from 'vue'
-=======
-import { computed, inject, ref } from 'vue'
->>>>>>> Stashed changes
 
 import CartItem from './CartItem.vue'
 import ButtonRight from './UI/ButtonRight.vue'
 import ArrowSlider from '@/svg/ArrowSlider.vue'
 import InfoBlock from './InfoBlock.vue'
-<<<<<<< Updated upstream
 
 const props = defineProps({
   cart: Array,
@@ -97,22 +72,6 @@ const isCartEmpty = computed(() => {
   }
 })
 
-=======
-import axios from 'axios'
-
-const props = defineProps({
-  totalPrice: Number
-})
-
-const { cart } = inject('json')
-
-const isCartEmpty = computed(() => {
-  return cart.value.length === 0
-})
-
-const orderId = ref(null)
-
->>>>>>> Stashed changes
 const { manageCart, removeFromCart } = inject('manageCart')
 const discount = 0.05
 
@@ -123,26 +82,6 @@ const totalPriceWithDiscount = computed(() => {
 const discountAmount = computed(() => {
   return props.totalPrice - totalPriceWithDiscount.value
 })
-<<<<<<< Updated upstream
-=======
-
-const createOrder = async () => {
-  try {
-    const order = {
-      items: cart.value,
-      totalPrice: props.totalPrice.value
-    }
-    const { data } = await axios.post(`https://ce942b40b258bf22.mokky.dev/orders`, order)
-    cart.value = []
-
-    orderId.value = data.id
-    return true
-  } catch (err) {
-    console.log(err)
-    return false
-  }
-}
->>>>>>> Stashed changes
 </script>
 
 <style lang="less" scoped>

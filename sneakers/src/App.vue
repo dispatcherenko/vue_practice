@@ -1,6 +1,5 @@
 <template>
   <div class="app">
-<<<<<<< Updated upstream
     <transition name="fade">
       <CartRunner
         v-if="openCart"
@@ -10,14 +9,6 @@
         @createOrder="createOrder"
       />
     </transition>
-=======
-<<<<<<< Updated upstream
-=======
-    <transition name="fade">
-      <CartRunner v-if="openCart" :open-cart="openCart" :cart="cart" :totalPrice="totalPrice" />
-    </transition>
->>>>>>> Stashed changes
->>>>>>> Stashed changes
     <div class="app__container">
       <PageHeader @manageCart="manageCart" :totalPrice="totalPrice" />
       <router-view></router-view>
@@ -27,22 +18,10 @@
 </template>
 
 <script setup>
-<<<<<<< Updated upstream
 import { computed, onMounted, provide, ref, watch, reactive } from 'vue'
 import axios from 'axios'
 
 import PageHeader from './components/PageHeader.vue'
-=======
-<<<<<<< Updated upstream
-import PageHeader from './components/PageHeader.vue'
-import MainPage from './components/MainPage.vue'
-=======
-import { computed, onMounted, provide, ref, watch, reactive } from 'vue'
-import axios from 'axios'
-import debounce from 'lodash.debounce'
-
-import PageHeader from './components/PageHeader.vue'
->>>>>>> Stashed changes
 import PageFooter from './components/PageFooter.vue'
 import CartRunner from './components/CartRunner.vue'
 
@@ -57,15 +36,9 @@ const onChangeSort = (event) => {
   filters.sortBy = event.target.value
 }
 
-<<<<<<< Updated upstream
 const onChangeSearch = (event) => {
   filters.searchQuery = event.target.value
 }
-=======
-const onChangeSearch = debounce((event) => {
-  filters.searchQuery = event.target.value
-}, 250)
->>>>>>> Stashed changes
 
 const fetch = async () => {
   try {
@@ -82,16 +55,11 @@ const fetch = async () => {
       params
     })
 
-<<<<<<< Updated upstream
     items.value = data.map((obj) => ({
       ...obj,
       isFavorite: false,
       isAdded: false
     }))
-=======
-    items.value = data
-    console.log(items.value)
->>>>>>> Stashed changes
   } catch (ex) {
     console.log(ex)
   }
@@ -102,11 +70,7 @@ const fetchFavorites = async () => {
     const { data: favorites } = await axios.get(`https://ce942b40b258bf22.mokky.dev/favorites`)
 
     items.value = items.value.map((item) => {
-<<<<<<< Updated upstream
       const favorite = favorites.find((favorite) => favorite.idItemsFK === item.id)
-=======
-      const favorite = favorites.find((favorite) => favorite.item_id === item.id)
->>>>>>> Stashed changes
       if (!favorite) {
         return item
       } else {
@@ -126,11 +90,7 @@ const fetchFavorites = async () => {
 const addToFavorite = async (item) => {
   try {
     if (!item.isFavorite) {
-<<<<<<< Updated upstream
       const obj = { idItemsFK: item.id }
-=======
-      const obj = { item_id: item.id }
->>>>>>> Stashed changes
       item.isFavorite = !item.isFavorite
       const { data } = await axios.post(`https://ce942b40b258bf22.mokky.dev/favorites`, obj)
       item.favoriteId = data.id
@@ -150,7 +110,6 @@ const totalPrice = computed(() => {
   return cart.value.reduce((sum, item) => sum + item.price, 0)
 })
 
-<<<<<<< Updated upstream
 const createOrder = async () => {
   try {
     const order = {
@@ -166,8 +125,6 @@ const createOrder = async () => {
   }
 }
 
-=======
->>>>>>> Stashed changes
 const manageCart = () => {
   openCart.value = !openCart.value
 }
@@ -206,11 +163,7 @@ onMounted(async () => {
 
   cart.value = JSON.parse(localStorage.getItem('cart') || '[]')
 
-<<<<<<< Updated upstream
   //TODO: Сделать выгрузку из LS
-=======
-  //TODO: Сделать выгрузку из LocalStorage
->>>>>>> Stashed changes
   items.value = items.value.map((item) => ({
     ...item,
     isAdded: cart.value.some((cartItem) => cartItem.id === item.id)
@@ -250,10 +203,6 @@ watch(
   },
   { deep: true }
 )
-<<<<<<< Updated upstream
-=======
->>>>>>> Stashed changes
->>>>>>> Stashed changes
 </script>
 
 <style lang="less">

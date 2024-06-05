@@ -27,12 +27,9 @@ defineProps({
   height: 100%;
 
   &__image {
-<<<<<<< Updated upstream
     width: 120px;
     height: 120px;
-=======
     max-height: 120px;
->>>>>>> Stashed changes
     margin: 21px;
   }
 
